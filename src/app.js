@@ -52,12 +52,12 @@ app.get('/weather', (req,res) => {
         if(error){
            return res.send({error})
         }
-        forecast(latitude,longitude,(error,{temperature,precipProb,summary}={}) =>{
+        forecast(latitude,longitude,(error,{temperature,precipProb,summary,tempHigh,tempLow}={}) =>{
             if(error)
             {
                 return res.send({error})
             }
-            const forecast = summary+' It is currently '+temperature+' degrees out. The chance of rain is '+precipProb+'%'
+            const forecast = summary+' It is currently '+temperature+' degrees out. The chance of rain is '+precipProb+'%'+'. The maximum temperature today is '+tempHigh+' and the lowest is '+tempLow
             res.send({forecast,location,address:req.query.address
             })
         })
